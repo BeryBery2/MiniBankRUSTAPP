@@ -1,4 +1,5 @@
 mod login;
+mod secure_data;
 
 #[tokio::main]
 async fn main() {

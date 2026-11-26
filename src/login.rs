@@ -1,10 +1,11 @@
 use std::io::{self, Write};
 use sqlx::MySqlPool;
 use std::env;
+use crate::secure_data;
 
 fn clean_buffer() 
 {
-    //Cleans the buffer, letting the print to show and the input being asked in the same line
+    //Cleans the buffer, letting the print show and the input being asked in the same line
     //Actually I have no ideia how this works but it works
     io::stdout().flush().unwrap(); 
 }
@@ -36,6 +37,7 @@ pub async fn login() -> Result<(), sqlx::Error>
         }
         else
         {
+            password = secure_data::encrypt(&password);
             break;
         }
     }
