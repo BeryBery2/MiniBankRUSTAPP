@@ -33,3 +33,41 @@ pub fn encrypt(password: &str) -> String
 
     return encrypted_pasword;
 }
+
+pub fn decrypt(enc_password: &str) -> String
+{
+    let characters = [
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+        '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
+    ];
+    let mut decrypted_password = String::new();
+
+    for char in enc_password.chars()
+    {
+        for ch in 0..characters.len()
+        {
+            if char == characters[ch]
+            {
+                if (ch as isize) -1 == -1 
+                {
+                    decrypted_password.push(characters[characters.len()-3]);
+                }
+                else if  (ch as isize) -2 == -1 
+                {
+                    decrypted_password.push(characters[characters.len()-2]);
+                }
+                else if  (ch as isize) -3 == -1 
+                {
+                    decrypted_password.push(characters[characters.len()-1]);
+                }
+                else 
+                {
+                    decrypted_password.push(characters[ch-3]);    
+                }
+            }
+        }
+    }
+
+    return decrypted_password;
+}
